@@ -3,8 +3,16 @@ import { createContext, useState, useContext } from 'react'
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-  const [allItems, setAllItems] = useState([])
   const [isView, setIsView] = useState(false)
+  const [allItems, setAllItems] = useState([])
+  const [editItem, setEditItem] = useState({})
+  const [isEdit, setIsEdit] = useState(false)
+
+  const handleToggle = (e) => {
+    const validateEdit = isEdit && e.target.textContent
+    setIsView(true)
+    setIsEdit(validateEdit && false)
+  }
 
   const saveAllItems = (elements) => {
     setAllItems(elements)
@@ -18,7 +26,21 @@ export const AppProvider = ({ children }) => {
     setAllItems([...allItems].filter((item) => item.id !== id))
   }
 
-  const handleToggle = () => setIsView(true)
+  const handleEditItem = (id) => {
+    setEditItem([...allItems].find((item) => item.id === id))
+    setIsEdit(true)
+  }
+
+  const handleUpdateItem = (str) => {
+    setAllItems(
+      [...allItems].map((item) =>
+        item.id === editItem?.id
+          ? { ...item, descripcion: str }
+          : item
+      )
+    )
+    setIsEdit(false)
+  }
 
   const defaultValues = {
     /* airplanes */
@@ -26,6 +48,11 @@ export const AppProvider = ({ children }) => {
     saveAllItems,
     addNewItem,
     deleteItem,
+    editItem,
+    handleEditItem,
+    isEdit,
+    setIsEdit,
+    handleUpdateItem,
     /* toggle view */
     isView,
     handleToggle

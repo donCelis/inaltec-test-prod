@@ -31,6 +31,10 @@ textarea {
   color: var(--primary-color);
 }
 
+input:disabled{
+  color: rgba(255, 255, 255, 0.4);
+}
+
 button {
   cursor: pointer;
   border-radius: 4px;

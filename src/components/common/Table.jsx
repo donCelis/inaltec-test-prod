@@ -11,7 +11,7 @@ import useGetData from '../../hooks/useGetData'
 import Loading from './Loading'
 
 const Table = () => {
-  const { deleteItem, allItems } = useAppContext()
+  const { deleteItem, allItems, handleEditItem } = useAppContext()
 
   const { isLoading, error } = useGetData()
 
@@ -40,10 +40,6 @@ const Table = () => {
     }
   }
 
-  const handleUpdate = () => {
-    console.log('update')
-  }
-
   if (isLoading) return <Loading />
 
   return (
@@ -63,7 +59,7 @@ const Table = () => {
           </tr>
         )}
         {allItems.map(({ id, descripcion, fechaRegistro }) => (
-          <tr key={id} onDoubleClick={handleUpdate}>
+          <tr key={id} onDoubleClick={() => handleEditItem(id)}>
             <th>
               <button className='btn-minus' onClick={() => handleDelete(id)}>
                 -
