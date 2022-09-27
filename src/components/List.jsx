@@ -1,22 +1,8 @@
-import { useEffect } from 'react'
-import { toast } from 'react-toastify'
 import { useAppContext } from '../context'
-import useGetData from '../hooks/useGetData'
-import Loading from './common/Loading'
 import Table from './common/Table'
 
 const List = () => {
   const { handleToggle } = useAppContext()
-
-  const {
-    data: items,
-    isLoading,
-    error
-  } = useGetData()
-
-  useEffect(() => {
-    error && toast.error(error)
-  }, [error])
 
   return (
     <section className='list comp bg-dark'>
@@ -26,7 +12,7 @@ const List = () => {
           +
         </button>
       </div>
-      {isLoading ? <Loading /> : <Table items={items} />}
+      <Table />
     </section>
   )
 }
