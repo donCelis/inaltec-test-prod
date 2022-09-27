@@ -1,9 +1,11 @@
+import { useAppContext } from '../../context'
 import { fetcher } from '../../services'
 import { converDate } from '../../utils'
 
 const Table = ({ items = [] }) => {
+  const { deleteItem } = useAppContext()
   const handleDelete = async (id) => {
-    const options = {
+    /*  const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id })
@@ -12,9 +14,8 @@ const Table = ({ items = [] }) => {
     const response = await fetcher({
       url: 'Retirar',
       options
-    })
-
-    console.log(response)
+    }) */
+    deleteItem(id)
   }
 
   const handleUpdate = () => {

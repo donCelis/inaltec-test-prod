@@ -5,7 +5,7 @@ const Form = () => {
   const idRef = useRef()
   const descriptionRef = useRef()
 
-  const handleSubmit = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault()
 
     const data = {
@@ -13,22 +13,22 @@ const Form = () => {
       descripcion: String(descriptionRef.current.value.trim())
     }
 
-    const options = {
+    /* const options = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
       body: JSON.stringify(data)
     }
 
     const response = await fetcher({
       url: 'Adicionar',
       options
-    })
+    }) */
 
-    console.log(response)
+    console.log(data)
   }
 
   return (
-    <form className='register comp bg-dark' onSubmit={handleSubmit}>
+    <form className='register comp bg-dark' onSubmit={handleRegister}>
       <h3>Registro Aeronave</h3>
       <div>
         <label htmlFor='idValue'>Id</label>

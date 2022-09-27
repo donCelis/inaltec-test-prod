@@ -1,10 +1,12 @@
+import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 import { useAppContext } from '../context'
 import useGetData from '../hooks/useGetData'
 import Loading from './common/Loading'
 import Table from './common/Table'
 
 const List = () => {
-  const { setIsView } = useAppContext()
+  const { handleToggle } = useAppContext()
 
   const {
     data: items,
@@ -12,16 +14,19 @@ const List = () => {
     error
   } = useGetData()
 
+  useEffect(() => {
+    error && toast.error(error)
+  }, [error])
+
   return (
     <section className='list comp bg-dark'>
       <div className='d-flex'>
         <h3>Lista Aeronaves</h3>
-        <button className='btn-plus' onClick={() => setIsView(true)}>
+        <button className='btn-plus' onClick={handleToggle}>
           +
         </button>
       </div>
       {isLoading ? <Loading /> : <Table items={items} />}
-      {error && <p className='text-center'>{error}</p>}
     </section>
   )
 }
