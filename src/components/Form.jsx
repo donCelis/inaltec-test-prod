@@ -1,7 +1,10 @@
 import { useRef } from 'react'
+import { toast } from 'react-toastify'
+import { useAppContext } from '../context'
 import { fetcher } from '../services'
 
 const Form = () => {
+  const { addNewItem } = useAppContext()
   const idRef = useRef()
   const descriptionRef = useRef()
 
@@ -10,21 +13,29 @@ const Form = () => {
 
     const data = {
       id: Number(idRef.current.value.trim()),
-      descripcion: String(descriptionRef.current.value.trim())
+      descripcion: String(descriptionRef.current.value.trim()),
+      fechaRegistro: new Date()
     }
 
-    /* const options = {
+    const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json;charset=UTF-8' },
       body: JSON.stringify(data)
     }
 
+    const subPathAdd = 'Adicionar'
     const response = await fetcher({
-      url: 'Adicionar',
+      url: subPathAdd,
       options
-    }) */
+    })
 
-    console.log(data)
+    if (response?.operacionExitosa) {
+      toast.info(`El elemento ${data.descripcion} fue agreado`)
+      addNewItem(data)
+      e.target.reset()
+    } else {
+      toast.error(response?.mensaje || 'No se pudo guardado el elemento')
+    }
   }
 
   return (

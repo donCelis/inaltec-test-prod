@@ -10,6 +10,10 @@ export const AppProvider = ({ children }) => {
     setAllItems(elements)
   }
 
+  const addNewItem = (newItem) => {
+    setAllItems([...allItems, newItem])
+  }
+
   const deleteItem = (id) => {
     setAllItems(allItems.filter((item) => item.id !== id))
   }
@@ -18,7 +22,9 @@ export const AppProvider = ({ children }) => {
 
   const defaultValues = {
     /* airplanes */
+    allItems,
     saveAllItems,
+    addNewItem,
     deleteItem,
     /* toggle view */
     isView,

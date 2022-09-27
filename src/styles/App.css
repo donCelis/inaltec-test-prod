@@ -10,6 +10,12 @@
   max-width: 1440px;
 }
 
+@media screen and (max-width: 768px) {
+  .app{
+    grid-template-columns: 1fr;
+  }
+}
+
 .text-center {
   text-align: center;
 }
@@ -38,14 +44,17 @@
   display: flex;
   justify-content: flex-end;
 }
+
 .btn-plus,
 .btn-minus {
   border: 0;
   padding: 0.3rem 0.4rem;
 }
+
 .btn-plus {
   background: #16a085;
 }
+
 .btn-minus {
   background: #c0392b;
 }

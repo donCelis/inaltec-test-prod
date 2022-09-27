@@ -11,9 +11,9 @@ import useGetData from '../../hooks/useGetData'
 import Loading from './Loading'
 
 const Table = () => {
-  const { deleteItem } = useAppContext()
+  const { deleteItem, allItems } = useAppContext()
 
-  const { data: items, isLoading, error } = useGetData()
+  const { isLoading, error } = useGetData()
 
   useEffect(() => {
     error && toast.error(error)
@@ -26,13 +26,18 @@ const Table = () => {
       body: JSON.stringify({ id })
     }
 
+    const subPathDel = 'Retirar'
     const response = await fetcher({
-      url: 'Retirar',
+      url: subPathDel,
       options
     })
 
-    console.log(response)
-    // deleteItem(id)
+    if (response?.operacionExitosa) {
+      deleteItem(id)
+      toast.info('Elemento borrado')
+    } else {
+      toast.error('Error')
+    }
   }
 
   const handleUpdate = () => {
@@ -52,12 +57,12 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {items.length === 0 && (
+        {allItems.length === 0 && (
           <tr>
             <td colSpan={4}>Sin elementos</td>
           </tr>
         )}
-        {items.map(({ id, descripcion, fechaRegistro }) => (
+        {allItems.map(({ id, descripcion, fechaRegistro }) => (
           <tr key={id} onDoubleClick={handleUpdate}>
             <th>
               <button className='btn-minus' onClick={() => handleDelete(id)}>
