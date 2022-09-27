@@ -1,7 +1,7 @@
 import { fetcher } from '../../services'
 import { converDate } from '../../utils'
 
-const Table = ({ items = [], sms = '' }) => {
+const Table = ({ items = [] }) => {
   const handleDelete = async (id) => {
     const options = {
       method: 'POST',
@@ -15,6 +15,10 @@ const Table = ({ items = [], sms = '' }) => {
     })
 
     console.log(response)
+  }
+
+  const handleUpdate = () => {
+    console.log('update')
   }
 
   return (
@@ -36,7 +40,7 @@ const Table = ({ items = [], sms = '' }) => {
             )
           : (
               items.map(({ id, descripcion, fechaRegistro }) => (
-                <tr key={id}>
+                <tr key={id} onDoubleClick={handleUpdate}>
                   <th>
                     <button className='btn-minus' onClick={() => handleDelete(id)}>-</button>
                   </th>
