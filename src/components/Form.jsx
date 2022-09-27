@@ -19,7 +19,7 @@ const Form = () => {
 
     const options = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json;charset=UTF-8' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
 
@@ -30,7 +30,7 @@ const Form = () => {
     })
 
     if (response?.operacionExitosa) {
-      toast.info(`El elemento ${data.descripcion} fue agreado`)
+      toast.info('El elemento fue agreado')
       addNewItem(data)
       e.target.reset()
     } else {

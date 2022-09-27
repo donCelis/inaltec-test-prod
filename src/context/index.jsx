@@ -15,7 +15,7 @@ export const AppProvider = ({ children }) => {
   }
 
   const deleteItem = (id) => {
-    setAllItems(allItems.filter((item) => item.id !== id))
+    setAllItems([...allItems].filter((item) => item.id !== id))
   }
 
   const handleToggle = () => setIsView(true)
