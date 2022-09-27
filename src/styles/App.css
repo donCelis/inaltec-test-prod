@@ -1,0 +1,75 @@
+/* estilos generales */
+.app {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 5rem 0;
+  align-items: flex-start;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-dark {
+  background: var(--third-color);
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0 0.8rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.comp {
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.move-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-plus,
+.btn-minus {
+  border: 0;
+  padding: 0.3rem 0.4rem;
+}
+.btn-plus {
+  background: #16a085;
+}
+.btn-minus {
+  background: #c0392b;
+}
+/* componente List */
+
+/* componente Register */
+.register {
+  width: 100%;
+}
+
+.register h3 {
+  margin-bottom: 1rem;
+}
+
+.register > div {
+  margin-bottom: 1rem;
+}
+
+.register > div:last-child {
+  margin-bottom: 0;
+}
+
+.register button {
+  padding: 0.5rem 0.7rem;
+  background: #2980b9;
+  border: 0;
+}
