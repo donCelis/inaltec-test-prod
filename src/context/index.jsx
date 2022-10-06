@@ -3,16 +3,9 @@ import { createContext, useState, useContext } from 'react'
 const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-  const [isView, setIsView] = useState(false)
   const [allItems, setAllItems] = useState([])
   const [editItem, setEditItem] = useState({})
   const [isEdit, setIsEdit] = useState(false)
-
-  const handleToggle = (e) => {
-    const validateEdit = isEdit && e.target.textContent
-    setIsView(true)
-    setIsEdit(validateEdit && false)
-  }
 
   const saveAllItems = (elements) => {
     setAllItems(elements)
@@ -52,10 +45,7 @@ export const AppProvider = ({ children }) => {
     handleEditItem,
     isEdit,
     setIsEdit,
-    handleUpdateItem,
-    /* toggle view */
-    isView,
-    handleToggle
+    handleUpdateItem
   }
 
   return (
